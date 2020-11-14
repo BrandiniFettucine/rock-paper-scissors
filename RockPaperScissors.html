@@ -1,0 +1,69 @@
+<script>
+    
+let userInput = prompt("Rock, paper, or scissors?").toLowerCase();
+let winCounter = 0;
+
+function computerPlay() {
+    let x = Math.floor(Math.random()*3)
+    switch (x) {
+        case 0:
+            return "rock";
+        case 1:
+            return "paper";
+        case 2:
+            return "scissors";
+    }
+}
+
+function playRound(userInput, computerSelection) {
+    if (userInput === "rock") {
+        switch (computerSelection) {
+            case "rock":
+                return ("Computer selected rock. It's a draw!");
+            case "paper":
+                winCounter--;
+                return ("Computer selected paper. You lose!");
+            case "scissors":
+                winCounter++;
+                return ("Computer selected scissors. You win!");
+        }
+    } else if (userInput === "paper") {
+        switch (computerSelection) {
+            case "rock":
+                winCounter++;
+                return ("Computer selected rock. You win!");
+            case "paper":
+                return ("Computer selected paper. It's a draw!");
+            case "scissors":
+                winCounter--;
+                return ("Computer selected scissors. You lose!");
+        }
+    } else if (userInput === "scissors") {
+        switch (computerSelection) {
+            case "rock":
+                winCounter--;
+                return ("Computer selected rock. You lose!");
+            case "paper":
+                winCounter++;
+                return ("Computer selected paper. You win!");
+            case "scissors":
+                return ("Computer selected scissors. It's a draw!");
+        }
+    }
+}
+
+function game() {
+    if (!(userInput === "rock"||userInput === "paper"||userInput ==="scissors")) {
+        console.log ("Please type in rock, paper, or scissors.");
+    } else {
+        let computerSelection;
+        for (i = 0; i < 5; i++) {
+        computerSelection = computerPlay();
+        console.log(playRound(userInput, computerSelection));
+        }
+        (winCounter > 0) ? console.log("You win the best of 5!"): (winCounter < 0) ? console.log("You lose the best of 5!"): console.log("The best of 5 ends in a draw!");
+    }
+}
+
+game()
+</script>
